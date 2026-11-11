@@ -28,6 +28,11 @@ Steps:
    and explain in the note rather than guessing. Keep edits minimal and surgical — do not
    rewrite entries that have not changed, and preserve the file's formatting and comments.
 
-7. Make no other file changes. Do not touch index.html, styles.css, or app.js.
+7. Update `window.FUBO_META.lastVerified` at the top of `data.js` to today's date in
+   YYYY-MM-DD form — do this on every run, even when no event entries changed, so the
+   site's "Dates last verified" line stays current.
+
+8. Make no other file changes. Do not touch index.html, styles.css, or app.js. (Leave
+   `window.FUBO_META.repoUrl` as it is — the repo owner sets that.)
 
 When finished, print a short summary of what you checked and what you changed.

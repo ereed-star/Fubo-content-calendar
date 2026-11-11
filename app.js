@@ -51,6 +51,29 @@
       cutDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
   }
 
+  // Footer meta: last-verified date (bumped weekly by the Action) + repo link
+  var meta = window.FUBO_META || {};
+  var metaEl = document.getElementById("meta");
+  if (metaEl) {
+    var bits = [];
+    if (meta.lastVerified) {
+      var lv = new Date(meta.lastVerified + "T00:00:00");
+      var lvStr = isNaN(lv) ? meta.lastVerified
+        : lv.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+      bits.push("Dates last verified " + lvStr + ".");
+    }
+    metaEl.textContent = bits.join(" ");
+    if (meta.repoUrl) {
+      metaEl.appendChild(document.createTextNode(" "));
+      var a = document.createElement("a");
+      a.href = meta.repoUrl;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = "Source & data on GitHub ↗";
+      metaEl.appendChild(a);
+    }
+  }
+
   // Build network filter chips (most common networks)
   var netCounts = {};
   DATA.forEach(function (e) {

@@ -22,6 +22,14 @@
    automatically and group under their month.
    ========================================================================= */
 
+// Site metadata. `lastVerified` is bumped automatically by the weekly
+// re-verification Action. Set `repoUrl` to your GitHub repo once pushed
+// (leave "" to hide the link).
+window.FUBO_META = {
+  lastVerified: "2026-11-11",
+  repoUrl: ""   // e.g. "https://github.com/you/fubo-sports-live"
+};
+
 window.FUBO_EVENTS = [
   // ===== NOVEMBER 2026 =====
   {cat:"sport",d:20261108,end:20261115,date:"Nov 8–15",yr:"2026",title:"WTA Finals",nets:["Tennis Channel"],note:"Season-ending championship, now underway.",fix:"Relocated from Riyadh to Indian Wells, CA; runs Nov 8–15 (was listed Nov 7–14 in Riyadh)."},

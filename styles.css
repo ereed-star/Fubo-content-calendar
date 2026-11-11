@@ -99,6 +99,9 @@ footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:v
 footer .legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px}
 footer .legend span{display:inline-flex;align-items:center;gap:6px}
 .dot{width:9px;height:9px;border-radius:3px;flex:none}
+footer .meta{margin:12px 0 0;font-size:12px;color:var(--muted)}
+footer .meta a{color:var(--accent);text-decoration:none;font-weight:600;white-space:nowrap}
+footer .meta a:hover{text-decoration:underline}
 
 @media (max-width:560px){
   .card{grid-template-columns:72px 1fr;gap:11px;padding:12px}
