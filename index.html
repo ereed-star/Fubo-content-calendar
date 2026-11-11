@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fubo Content Calendar</title>
+<meta name="description" content="Fact-checked calendar of upcoming sports and entertainment premieres across networks carried on Fubo.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📺</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <p class="eyebrow">Fubo Programming</p>
+    <h1>Upcoming Content Calendar</h1>
+    <p class="sub">Notable sports and entertainment premieres across networks carried on Fubo. Dates fact-checked against network, league, and press sources.</p>
+    <span class="asof">Updated <b id="asof">—</b> · showing events from today forward</span>
+  </header>
+
+  <div class="controls">
+    <div class="row">
+      <label class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search events, networks, notes…" autocomplete="off">
+      </label>
+      <div class="seg" id="cat">
+        <button data-cat="all" aria-pressed="true">All</button>
+        <button data-cat="sport" aria-pressed="false">Sports</button>
+        <button data-cat="ent" aria-pressed="false">Entertainment</button>
+      </div>
+    </div>
+    <div class="nets" id="nets"></div>
+  </div>
+
+  <p class="count" id="count"></p>
+  <div id="list"></div>
+
+  <footer>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--sport)"></i> Sports</span>
+      <span><i class="dot" style="background:var(--ent)"></i> Entertainment</span>
+      <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg> Correction from the original list</span>
+      <span><b class="tbc">≈</b> Date approximate / to be confirmed</span>
+    </div>
+    <p style="margin:0">Weekly-recurring slates (NFL, college football, league play) are shown as ranges. Verify exact game windows and regional broadcast assignments against each network's schedule before publishing to members. Edit <code>data.js</code> to add or update events.</p>
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
