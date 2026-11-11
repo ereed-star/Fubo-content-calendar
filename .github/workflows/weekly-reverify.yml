@@ -1,0 +1,50 @@
+name: Weekly date re-verification
+
+# Runs Claude Code weekly to re-check upcoming event dates against live
+# sources and update data.js. Requires an ANTHROPIC_API_KEY repo secret
+# (Settings -> Secrets and variables -> Actions -> New repository secret).
+
+on:
+  schedule:
+    - cron: "7 9 * * 1"   # Mondays 09:07 UTC
+  workflow_dispatch: {}    # also lets you run it manually from the Actions tab
+
+permissions:
+  contents: write          # allow the job to commit & push
+
+jobs:
+  reverify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Re-verify event dates in data.js
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "$(cat .github/reverify-prompt.md)" \
+            --allowedTools "Read,Edit,Write,WebSearch,WebFetch" \
+            --dangerously-skip-permissions
+
+      - name: Commit & push any changes
+        run: |
+          git config user.name "fubo-calendar-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data.js; then
+            echo "No changes this week."
+          else
+            git add data.js
+            git commit -m "Weekly date re-verification ($(date -u +%Y-%m-%d))
+
+          Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
+            git push
+          fi
