@@ -19,6 +19,9 @@ Steps:
    Update all of them together. When you correct a value, set or refresh the `fix:` note
    with a short explanation. Remove a `fix:` note only if it no longer describes a real
    discrepancy.
+   Also maintain the optional `time` field (US-Eastern start time, e.g. "8:00 PM ET"):
+   add it when a start time has been announced, correct it if it changed, and leave it off
+   for multi-day/weekly slates or events with no announced time (don't guess a time).
 
 5. Add any notable, newly-announced sports or entertainment premieres on Fubo-carried
    networks that now fall within the next ~10 weeks. Match the existing object shape;
