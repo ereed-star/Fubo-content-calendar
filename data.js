@@ -29,7 +29,7 @@
 // (leave "" to hide the link).
 window.FUBO_META = {
   lastVerified: "2026-11-11",
-  repoUrl: ""   // e.g. "https://github.com/you/fubo-sports-live"
+  repoUrl: "https://github.com/ereed-star/fubo-content-calendar"
 };
 
 window.FUBO_EVENTS = [
