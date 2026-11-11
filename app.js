@@ -23,10 +23,33 @@
   var listEl = document.getElementById("list");
   var countEl = document.getElementById("count");
 
-  // "Updated" banner = today's date
-  var today = new Date();
-  var fmt = today.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  document.getElementById("asof").textContent = fmt;
+  // ---- Rolling window: today through MONTHS_AHEAD months out ----
+  var MONTHS_AHEAD = 2;
+  function ymd(dt) {
+    return dt.getFullYear() * 10000 + (dt.getMonth() + 1) * 100 + dt.getDate();
+  }
+  var now = new Date();
+  var todayNum = ymd(now);
+  var cutDate = new Date(now.getFullYear(), now.getMonth() + MONTHS_AHEAD, now.getDate());
+  var cutNum = ymd(cutDate);
+
+  // An event is in-window if it STARTS on/before the cutoff AND has not yet ended
+  // (ongoing/multi-day events carry an `end` key; single-day events use `d`).
+  function inWindow(e) {
+    var ends = e.end || e.d;
+    return e.d <= cutNum && ends >= todayNum;
+  }
+  DATA = DATA.filter(inWindow);
+
+  // "Updated" banner = today's date; window runs today -> cutoff
+  var optsDM = { month: "short", day: "numeric" };
+  document.getElementById("asof").textContent =
+    now.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  var winEl = document.getElementById("window");
+  if (winEl) {
+    winEl.textContent = now.toLocaleDateString("en-US", optsDM) + " – " +
+      cutDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  }
 
   // Build network filter chips (most common networks)
   var netCounts = {};
