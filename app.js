@@ -156,7 +156,8 @@
       var newPill = e["new"] ? '<span class="pill new">New</span>' : "";
       html += '<article class="card">' +
         '<div class="date">' + (e.tbc ? '<span class="tbc">≈ </span>' : "") + esc(e.date) +
-          '<span class="yr">' + esc(e.yr || "") + "</span></div>" +
+          '<span class="yr">' + esc(e.yr || "") + "</span>" +
+          (e.time ? '<span class="tm">' + esc(e.time) + "</span>" : "") + "</div>" +
         '<div class="body">' +
           '<p class="title">' + esc(e.title) + newPill + "</p>" +
           '<div class="tagwrap">' + catPill + netPills + "</div>" +
