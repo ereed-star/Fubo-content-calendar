@@ -161,7 +161,6 @@
           '<p class="title">' + esc(e.title) + newPill + "</p>" +
           '<div class="tagwrap">' + catPill + netPills + "</div>" +
           (e.note ? '<p class="note">' + esc(e.note) + "</p>" : "") +
-          (e.fix ? '<div class="fix"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><span>' + esc(e.fix) + "</span></div>" : "") +
         "</div>" +
       "</article>";
     });
